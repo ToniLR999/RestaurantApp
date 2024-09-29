@@ -31,13 +31,13 @@ public class ReceiptServices {
 		return receiptRepo.save(receipt);
 	}
 
-	public Receipt findReceiptById(Long id) {
+	public Receipt findReceiptById(String id) {
 		return receiptRepo.findById(id)
 				.orElseThrow(() -> new NotFoundException("Receipt by id " + id + " was not found"));
 
 	}
 
-	public void deleteReceipt(Long id) {
+	public void deleteReceipt(String id) {
 		receiptRepo.deleteById(id);
 	}
 }

@@ -31,13 +31,13 @@ public class MenuServices {
 		return menuRepo.save(menu);
 	}
 
-	public Menu findMenuById(Long id) {
+	public Menu findMenuById(String id) {
 		return menuRepo.findById(id)
 				.orElseThrow(() -> new NotFoundException("Menu by id " + id + " was not found"));
 
 	}
 
-	public void deleteMenu(Long id) {
+	public void deleteMenu(String id) {
 		menuRepo.deleteById(id);
 	}
 }

@@ -36,7 +36,7 @@ public class OrderController {
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id) {
+	public ResponseEntity<Order> getOrderById(@PathVariable("id") String id) {
 		Order cart = orderService.findOrderById(id);
 		return new ResponseEntity<>(cart, HttpStatus.OK);
 	}
@@ -54,7 +54,7 @@ public class OrderController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteOrder(@PathVariable("id") Long id) {
+	public ResponseEntity<?> deleteOrder(@PathVariable("id") String id) {
 		orderService.deleteOrder(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

@@ -31,13 +31,13 @@ public class BookingServices {
 		return bookingRepo.save(booking);
 	}
 
-	public Booking findBookingById(Long id) {
+	public Booking findBookingById(String id) {
 		return bookingRepo.findById(id)
 				.orElseThrow(() -> new NotFoundException("Booking by id " + id + " was not found"));
 
 	}
 
-	public void deleteBooking(Long id) {
+	public void deleteBooking(String id) {
 		bookingRepo.deleteById(id);
 	}
 }

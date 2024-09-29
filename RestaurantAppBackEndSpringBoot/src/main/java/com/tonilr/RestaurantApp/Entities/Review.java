@@ -2,48 +2,33 @@ package com.tonilr.RestaurantApp.Entities;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "reviews")
+@Document(collection = "reviews")  // Definición de la colección
 public class Review {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false, updatable = false)
-    private Long review_id;
+    private String review_id;
 
-	@Column(nullable = false, updatable = true)
     private String text;
 	
-	@Column(nullable = true, updatable = true)
     private Integer  rating;
 
-	@Column(nullable = false, updatable = true)
     private LocalDateTime date;
 	
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @DBRef
     private User user;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
+    @DBRef
     private Product product;
 	
-	 public Long getId() {
+	 public String getId() {
 	        return review_id;
 	    }
 
-	    public void setId(Long review_id) {
+	    public void setId(String review_id) {
 	        this.review_id = review_id;
 	    }
 

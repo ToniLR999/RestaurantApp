@@ -36,7 +36,7 @@ public class MenuController {
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Menu> getMenuById(@PathVariable("id") Long id) {
+	public ResponseEntity<Menu> getMenuById(@PathVariable("id") String id) {
 		Menu cart = menuService.findMenuById(id);
 		return new ResponseEntity<>(cart, HttpStatus.OK);
 	}
@@ -54,7 +54,7 @@ public class MenuController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteMenu(@PathVariable("id") Long id) {
+	public ResponseEntity<?> deleteMenu(@PathVariable("id") String id) {
 		menuService.deleteMenu(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

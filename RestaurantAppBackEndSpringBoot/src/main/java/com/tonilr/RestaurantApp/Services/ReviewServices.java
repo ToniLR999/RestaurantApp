@@ -31,12 +31,12 @@ public class ReviewServices {
 		return reviewRepo.save(review);
 	}
 
-	public Review findReviewById(Long id) {
+	public Review findReviewById(String id) {
 		return reviewRepo.findById(id)
 				.orElseThrow(() -> new NotFoundException("Review by id " + id + " was not found"));
 	}
 
-	public void deleteReview(Long id) {
+	public void deleteReview(String id) {
 		reviewRepo.deleteById(id);
 	}
 }

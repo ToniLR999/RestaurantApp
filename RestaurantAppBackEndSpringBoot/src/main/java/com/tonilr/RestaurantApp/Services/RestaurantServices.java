@@ -31,13 +31,13 @@ public class RestaurantServices {
 		return restaurantRepo.save(restaurant);
 	}
 
-	public Restaurant findRestaurantById(Long id) {
+	public Restaurant findRestaurantById(String id) {
 		return restaurantRepo.findById(id)
 				.orElseThrow(() -> new NotFoundException("Restaurant by id " + id + " was not found"));
 
 	}
 
-	public void deleteRestaurant(Long id) {
+	public void deleteRestaurant(String id) {
 		restaurantRepo.deleteById(id);
 	}
 }

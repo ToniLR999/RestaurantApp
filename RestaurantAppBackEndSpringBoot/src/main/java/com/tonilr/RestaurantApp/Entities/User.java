@@ -4,66 +4,47 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "users")
+@Document(collection = "users")  // Definición de la colección
 public class User {
 	
 		@Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(nullable = false, updatable = false)
-	    private Long user_id;
+	    private String user_id;
 
-		@Column(nullable = false, updatable = true)
 	    private String username;
 
-		@Column(nullable = false, updatable = true)
 	    private String password;
 
-		@Column(nullable = false, updatable = true)
 	    private String email;
 	    
-		@Column(nullable = false, updatable = true)
 		private Date register_date;
 		
-		@Column(nullable = true, updatable = true)
 	    private String address;
 		
-		@Column(nullable = true, updatable = true)
 	    private String phoneNumber;
 		
-		@Column(nullable = false, updatable = true)
 	    private Boolean isActive;
 
-	    @Enumerated(EnumType.STRING)
-		@Column(nullable = false, updatable = true)
+	    @DBRef
 	    private UserRole role;  // Example: ADMIN, USER
 		
-	    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	    @DBRef
 	    private Set<Order> orders = new HashSet<Order>();
 		
-	    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	    @DBRef
 	    private Set<Booking> bookings = new HashSet<Booking>();
 		
-	    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	    @DBRef
 	    private Set<Review> reviews = new HashSet<Review>();
 		
-		 public Long getId() {
+		 public String getId() {
 		        return user_id;
 		    }
 
-		    public void setId(Long user_id) {
+		    public void setId(String user_id) {
 		        this.user_id = user_id;
 		    }
 

@@ -31,13 +31,13 @@ public class ProductServices {
 		return productRepo.save(product);
 	}
 
-	public Product findProductById(Long id) {
+	public Product findProductById(String id) {
 		return productRepo.findById(id)
 				.orElseThrow(() -> new NotFoundException("Product by id " + id + " was not found"));
 
 	}
 
-	public void deleteProduct(Long id) {
+	public void deleteProduct(String id) {
 		productRepo.deleteById(id);
 	}
 }

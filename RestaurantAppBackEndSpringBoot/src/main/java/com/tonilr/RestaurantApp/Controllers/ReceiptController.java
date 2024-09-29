@@ -36,7 +36,7 @@ public class ReceiptController {
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Receipt> getReceiptById(@PathVariable("id") Long id) {
+	public ResponseEntity<Receipt> getReceiptById(@PathVariable("id") String id) {
 		Receipt receipt = receiptService.findReceiptById(id);
 		return new ResponseEntity<>(receipt, HttpStatus.OK);
 	}
@@ -54,7 +54,7 @@ public class ReceiptController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteReceipt(@PathVariable("id") Long id) {
+	public ResponseEntity<?> deleteReceipt(@PathVariable("id") String id) {
 		receiptService.deleteReceipt(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

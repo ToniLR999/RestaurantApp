@@ -1,60 +1,45 @@
 package com.tonilr.RestaurantApp.Entities;
 
 import java.sql.Date;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "restaurants")
+@Document(collection = "restaurants")
 public class Restaurant {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false, updatable = false)
-    private Long restaurant_id;
+    private String restaurant_id;
 
-	@Column(nullable = false, updatable = true)
     private String name;
 	
-	@Column(nullable = true, updatable = true)
     private String address;
 
-	@Column(nullable = false, updatable = true)
     private CuisineType cuisineType;
     
-	@Column(nullable = false, updatable = true)
 	private Date openingTime;
 	
-	@Column(nullable = false, updatable = true)
 	private Date closeTime;
 	
-	@Column(nullable = true, updatable = true)
     private String phoneNumber;
 	
-	@Column(nullable = false, updatable = true)
     private Boolean isActive;
 	
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @DBRef
     private Set<Menu> menus = new HashSet<Menu>();
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @DBRef
     private Set<Booking> bookings = new HashSet<Booking>();
 	
-	 public Long getId() {
+	 public String getId() {
 	        return restaurant_id;
 	    }
 
-	    public void setId(Long restaurant_id) {
+	    public void setId(String restaurant_id) {
 	        this.restaurant_id = restaurant_id;
 	    }
 

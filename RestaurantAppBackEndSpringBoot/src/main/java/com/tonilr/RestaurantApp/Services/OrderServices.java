@@ -31,13 +31,13 @@ public class OrderServices {
 		return orderRepo.save(order);
 	}
 
-	public Order findOrderById(Long id) {
+	public Order findOrderById(String id) {
 		return orderRepo.findById(id)
 				.orElseThrow(() -> new NotFoundException("Order by id " + id + " was not found"));
 
 	}
 
-	public void deleteOrder(Long id) {
+	public void deleteOrder(String id) {
 		orderRepo.deleteById(id);
 	}
 }

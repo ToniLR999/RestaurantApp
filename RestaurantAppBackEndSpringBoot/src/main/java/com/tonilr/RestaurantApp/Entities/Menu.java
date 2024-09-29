@@ -4,54 +4,36 @@ package com.tonilr.RestaurantApp.Entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.tonilr.CarsEcommerce.Entities.Order;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "menus")
+@Document(collection = "menus")
 public class Menu {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false, updatable = false)
-    private Long menu_id;
+    private String menu_id;
 
-	@Column(nullable = false, updatable = true)
     private String name;
 
-	@Column(nullable = false, updatable = true)
     private String description;
 
-	@Column(nullable = false, updatable = true)
     private String image;
 	
-	@Column(nullable = false, updatable = true)
     private Boolean isActive;
 	
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @DBRef
     private Restaurant restaurant;
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @DBRef
     private Set<Product> products = new HashSet<Product>();
     
 
-	 public Long getId() {
+	 public String getId() {
 	        return menu_id;
 	    }
 
-	    public void setId(Long menu_id) {
+	    public void setId(String menu_id) {
 	        this.menu_id = menu_id;
 	    }
 

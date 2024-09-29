@@ -36,7 +36,7 @@ public class BookingController {
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Booking> getBookingById(@PathVariable("id") Long id) {
+	public ResponseEntity<Booking> getBookingById(@PathVariable("id") String id) {
 		Booking cart = bookingService.findBookingById(id);
 		return new ResponseEntity<>(cart, HttpStatus.OK);
 	}
@@ -54,7 +54,7 @@ public class BookingController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteBooking(@PathVariable("id") Long id) {
+	public ResponseEntity<?> deleteBooking(@PathVariable("id") String id) {
 		bookingService.deleteBooking(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
